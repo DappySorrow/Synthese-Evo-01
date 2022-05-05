@@ -46,26 +46,53 @@ namespace UIL
             userGrid.Children.Add(Ecran);
         }
 
+        /// <summary>
+        /// Afficher UCListerLesVentes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVentes_Click(object sender, RoutedEventArgs e)
         {
             changerEcran(ListerLesVentes);
         }
 
+        /// <summary>
+        /// Afficher VentesParProvince
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnProvince_Click(object sender, RoutedEventArgs e)
         {
             changerEcran(VentesParProvince);
         }
 
+        /// <summary>
+        /// Afficher EvolutionVentes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEvolution_Click(object sender, RoutedEventArgs e)
         {
             changerEcran(EvolutionVentes);
         }
 
+        /// <summary>
+        /// Quitter le programme
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSortie_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if(MessageBox.Show("Êtes-vous sûr de vouloir arrêter le programme?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
         }
 
+        /// <summary>
+        /// Remplacer le UserControl Ecran par un autre UserControl
+        /// </summary>
+        /// <param name="userControl">Le UserControl voulu</param>
         private void changerEcran(UserControl userControl)
         {
             userGrid.Children.Remove(Ecran);

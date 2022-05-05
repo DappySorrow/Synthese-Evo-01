@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="LightPink">
-            
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="ÉvaluationSynthèse_Volet A"/>
+            <Label Content="Nom app"/>
+            <Label Content="Réalisé par : Jean-Simon Barbeau - 1446326"/>
+        </StackPanel>
+        <Label Content="Source de données : Statistique Canada et Wikipédia" 
+               HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

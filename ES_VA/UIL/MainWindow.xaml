@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:UIL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="DarkBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="0,5,0,5"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
@@ -22,7 +33,7 @@
 
         <!--Les bouttons-->
         <Grid Grid.Column="1">
-            <StackPanel>
+            <StackPanel VerticalAlignment="Center">
                 <Button Name="btnVentes" Content="Lister les ventes" Click="btnVentes_Click"/>
                 <Button Name="btnProvince" Content="Ventes par province" Click="btnProvince_Click"/>
                 <Button Name="btnEvolution" Content="Évolution des ventes" Click="btnEvolution_Click"/>
