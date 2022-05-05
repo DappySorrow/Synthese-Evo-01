@@ -1,0 +1,10 @@
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Québec','Québec',1667441,8356851);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Ontario','Toronto',1076395,13448494);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Colombie Britannique','Victoria',944735,4648055);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Alberta','Edmonton',661848,4067175);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Saskatchewan','Regina',651036,1098352);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Manitoba','Winnipeg',647797,1278365);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Terre-Neuve-et-Labrador','Saint-John',405212,519716);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Nouveau-Brunswick','Fredericton',72908,747101);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('Nouvelle-Écosse','Halifax',55284,923598);
+INSERT INTO provinces(nomProvince,capitale,superficie,population) VALUES ('île-du-Prince-Édouard','Charlottetown',5660,142907);
