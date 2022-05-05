@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\2022H\EvoDesApps\_ES_VA\ES_VA\UIL\obj\Debug\
+C:\Users\Jean_\Desktop\Synthese-Evo-01\ES_VA\UIL\obj\Debug\
 UIL
 none
 false
 DEBUG;TRACE
-F:\2022H\EvoDesApps\_ES_VA\ES_VA\UIL\App.xaml
-11151548125
+C:\Users\Jean_\Desktop\Synthese-Evo-01\ES_VA\UIL\App.xaml
+51825454153
 
-5-2017746502
-14933891484
-MainWindow.xaml;
+9635115420
+14-1014580529
+MainWindow.xaml;UCAccueil.xaml;UCEvolutionVentes.xaml;UCListerLesVentes.xaml;UCVentesParProvince.xaml;
 
 False
 

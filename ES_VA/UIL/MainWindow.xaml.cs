@@ -25,15 +25,55 @@ namespace UIL
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public UserControl Ecran { get; set; }
+
+        public UCAccueil Accueil = new UCAccueil();
+        
+        public UCListerLesVentes ListerLesVentes = new UCListerLesVentes();
+        public UCVentesParProvince VentesParProvince = new UCVentesParProvince();
+        public UCEvolutionVentes EvolutionVentes = new UCEvolutionVentes();
+
         public MainWindow()
         {
             InitializeComponent();
+
             DataTable dt = AccessDB.ConnecterBD();
 
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                Console.WriteLine(dt.Rows[i]["Province"].ToString());
-            }
+            Ecran = Accueil;
+            Grid.SetRow(Ecran, 0);
+            Grid.SetColumn(Ecran, 0);
+            userGrid.Children.Add(Ecran);
+        }
+
+        private void btnVentes_Click(object sender, RoutedEventArgs e)
+        {
+            changerEcran(ListerLesVentes);
+        }
+
+        private void btnProvince_Click(object sender, RoutedEventArgs e)
+        {
+            changerEcran(VentesParProvince);
+        }
+
+        private void btnEvolution_Click(object sender, RoutedEventArgs e)
+        {
+            changerEcran(EvolutionVentes);
+        }
+
+        private void btnSortie_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void changerEcran(UserControl userControl)
+        {
+            userGrid.Children.Remove(Ecran);
+
+            Ecran = userControl;
+            Grid.SetRow(Ecran, 0);
+            Grid.SetColumn(Ecran, 0);
+            userGrid.Children.Add(Ecran);
         }
     }
 }

@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
+        <!--UserControl-->
+        <Grid Grid.Column="0" Name="userGrid">
+            
+        </Grid>
+
+        <!--Les bouttons-->
+        <Grid Grid.Column="1">
+            <StackPanel>
+                <Button Name="btnVentes" Content="Lister les ventes" Click="btnVentes_Click"/>
+                <Button Name="btnProvince" Content="Ventes par province" Click="btnProvince_Click"/>
+                <Button Name="btnEvolution" Content="Évolution des ventes" Click="btnEvolution_Click"/>
+                <Button Name="btnSortie" Content="Sortie" Click="btnSortie_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
