@@ -13,9 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using BLL;
 using System.Collections.ObjectModel;
 using System.Data;
-using DAL;
 
 
 namespace UIL
@@ -37,8 +37,6 @@ namespace UIL
         public MainWindow()
         {
             InitializeComponent();
-
-            DataTable dt = AccessDB.ConnecterBD();
 
             Ecran = Accueil;
             Grid.SetRow(Ecran, 0);

@@ -6,7 +6,13 @@
              xmlns:local="clr-namespace:UIL"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Green">
-            
-    </Grid>
+    <DataGrid Name="dgVentes" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Province" Width="*" Binding="{Binding Province}"/>
+            <DataGridTextColumn Header="TypeVeh" Width="*" Binding="{Binding TypeVeh}"/>
+            <DataGridTextColumn Header="Annee" Width="*" Binding="{Binding Annee}"/>
+            <DataGridTextColumn Header="NbUnites" Width="*" Binding="{Binding NbUnites}"/>
+            <DataGridTextColumn Header="Mntx1000" Width="*" Binding="{Binding Mntx1000}"/>
+        </DataGrid.Columns>
+    </DataGrid>
 </UserControl>

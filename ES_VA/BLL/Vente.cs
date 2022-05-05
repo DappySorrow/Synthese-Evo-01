@@ -5,12 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.ComponentModel; //Soit capable d'avertir des changements
+using System.Collections.ObjectModel;
+using DAL;
+using System.Data;
 
 namespace BLL
 {
 
     public class Vente : INotifyPropertyChanged
     {
+
+        static public ObservableCollection<Vente> ventes = new ObservableCollection<Vente>();
+
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
@@ -128,6 +134,34 @@ namespace BLL
             return this.mntx1000 / this.NbUnites;
         }
 
+        //==========================================================================================
+
+        public static ObservableCollection<Vente> ChargerListeVentes()
+        {
+            DataTable dt = AccessDB.ConnecterBD();
+
+            var ventesList = new ObservableCollection<Vente>();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                var vente = new Vente
+                {
+                    //  Province    TypeVeh       Annee      NbUnites      Mntx1000
+                    Province = dt.Rows[i]["Province"].ToString(),
+                    TypeVeh = dt.Rows[i]["TypeVeh"].ToString(),
+                    Annee = int.Parse(dt.Rows[i]["Annee"].ToString()),
+                    NbUnites = double.Parse(dt.Rows[i]["NbUnites"].ToString()),
+                    Mntx1000 = double.Parse(dt.Rows[i]["Mntx1000"].ToString())
+                };
+
+                ventesList.Add(vente);
+
+            }
+
+            ventes = ventesList;
+
+            return ventes;
+        }
+
     }
 }
-
