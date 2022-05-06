@@ -44,56 +44,13 @@ namespace UIL
                 int anneeFin = int.Parse(cbAnneesFin.SelectedItem.ToString());
                 string typeVehicule = cbTypeVehicule.SelectedItem.ToString();
 
-                ObservableCollection<Vente> sort = new ObservableCollection<Vente>(from item in Vente.ventes
-                                                                                   orderby item.Annee
-                                                                                   where item.Annee >= anneeDebut
-                                                                                   where item.Annee <= anneeFin
-                                                                                   select item);
 
-                //Cération des provinces
-                List<Province> provinces = new List<Province>();
-                foreach (var vente in sort)
-                {
-                    Province province = new Province(vente.Province, vente.NbUnites);
-                    provinces.Add(province);
-                }
-
-                //=======================================================================
-
-                //Retirer les doublons des noms de provinces
-                List<string> provincesNoms = new List<string>();
-                foreach (var province in provinces)
-                {
-                    provincesNoms.Add(province.Nom);
-                }
-                provincesNoms = provincesNoms.Distinct().ToList();
-
+                List<string> provincesNoms = NomsDeProvincesSansDoublons(anneeDebut, anneeFin, typeVehicule);
                 lbProvince.ItemsSource = provincesNoms;
 
                 //=======================================================================
 
-                List<double> provincesSommes = new List<double>();
-                double sommeTotal = 0;
-                foreach (var province in provincesNoms)
-                {
-                    ObservableCollection<Vente> sortSommes = new ObservableCollection<Vente>(from item in Vente.ventes
-                                                                                             where item.Annee >= anneeDebut
-                                                                                             where item.Annee <= anneeFin
-                                                                                             where item.TypeVeh == typeVehicule
-                                                                                             where item.Province == province
-                                                                                             select item);
-
-                    foreach (var vente in sortSommes)
-                    {
-                        sommeTotal += vente.NbUnites;
-                    }
-
-                    provincesSommes.Add(sommeTotal);
-                    sommeTotal = 0;
-                }
-
-                
-
+                List<double> provincesSommes = TotalNbUnitesParProvince(anneeDebut, anneeFin, typeVehicule, provincesNoms);
                 lbSomme.ItemsSource = provincesSommes;
             }
             else
@@ -168,6 +125,51 @@ namespace UIL
             }
 
             cbAnneesFin.ItemsSource = newAnnees;
+        }
+
+        private List<string> NomsDeProvincesSansDoublons(int anneeDebut, int anneeFin, string typeVehicule)
+        {
+            ObservableCollection<Vente> ventes = new ObservableCollection<Vente>(from item in Vente.ventes
+                                                                               orderby item.Province
+                                                                               where item.Annee >= anneeDebut
+                                                                               where item.Annee <= anneeFin
+                                                                               where item.TypeVeh == typeVehicule
+                                                                               select item);
+
+            List<string> provincesNoms = new List<string>();
+            foreach (var vente in ventes)
+            {
+                provincesNoms.Add(vente.Province);
+            }
+            return provincesNoms = provincesNoms.Distinct().ToList();
+        }
+
+        private List<double> TotalNbUnitesParProvince(int anneeDebut, int anneeFin, string typeVehicule, List<string> provincesNoms)
+        {
+            List<double> provincesSommes = new List<double>();
+            double sommeTotal = 0;
+            foreach (var province in provincesNoms)
+            {
+                ObservableCollection<Vente> ventes = new ObservableCollection<Vente>(from item in Vente.ventes
+                                                                                        orderby item.Province
+                                                                                        where item.Annee >= anneeDebut
+                                                                                        where item.Annee <= anneeFin
+                                                                                        where item.Annee <= anneeFin
+                                                                                        where item.TypeVeh == typeVehicule
+                                                                                        where item.Province == province
+                                                                                        select item);
+
+
+                foreach (var vente in ventes)
+                {
+                    sommeTotal += vente.NbUnites;
+                }
+
+                provincesSommes.Add(sommeTotal);
+                sommeTotal = 0;
+            }
+
+            return provincesSommes;
         }
     }
 }
