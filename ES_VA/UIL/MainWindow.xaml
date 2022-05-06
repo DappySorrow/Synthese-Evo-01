@@ -8,13 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="DarkBlue"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Margin" Value="0,5,0,5"/>
-        </Style>
+        
     </Window.Resources>
 
     <Grid>
@@ -33,6 +27,16 @@
 
         <!--Les bouttons-->
         <Grid Grid.Column="1">
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="DarkBlue"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Width" Value="150"/>
+                    <Setter Property="Margin" Value="0,5,0,5"/>
+                </Style>
+            </Grid.Resources>
+            
             <StackPanel VerticalAlignment="Center">
                 <Button Name="btnVentes" Content="Lister les ventes" Click="btnVentes_Click"/>
                 <Button Name="btnProvince" Content="Ventes par province" Click="btnProvince_Click"/>
