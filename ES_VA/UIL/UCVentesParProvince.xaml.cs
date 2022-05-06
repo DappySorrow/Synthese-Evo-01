@@ -47,12 +47,8 @@ namespace UIL
                 int anneeFin = int.Parse(cbAnneesFin.SelectedItem.ToString());
                 string typeVehicule = cbTypeVehicule.SelectedItem.ToString();
 
-
                 List<string> provincesNoms = NomsDeProvincesSansDoublons(anneeDebut, anneeFin, typeVehicule);
-                //lbProvince.ItemsSource = provincesNoms;
-
                 List<double> provincesSommes = TotalNbUnitesParProvince(anneeDebut, anneeFin, typeVehicule, provincesNoms);
-                //lbSomme.ItemsSource = provincesSommes;
 
                 AfficherResultats(provincesNoms, provincesSommes);
             }
@@ -68,7 +64,7 @@ namespace UIL
         }
 
         /// <summary>
-        /// Ramasser les dates au lancement de la fenêtre pour les mettre dans cbAnneesDebut pour permettre une selection de date
+        /// Ramasser les données au lancement de la fenêtre pour permettre une selection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -107,21 +103,24 @@ namespace UIL
         /// <param name="e"></param>
         private void cbAnneesDebut_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //L'année de début
             int anneeMin = int.Parse(cbAnneesDebut.SelectedItem.ToString());
 
+            //La liste de toute les années, sans doublons
             List<int> annnees = new List<int>();
-
             foreach (var vente in Vente.ventes)
             {
                 annnees.Add((vente as Vente).Annee);
             }
             annnees = annnees.Distinct().ToList();
 
-            List<int> newAnnees = new List<int>();
+            //-----------------------------------------------------------------
 
+            //Une liste des années disponnibles
+            List<int> newAnnees = new List<int>();
             foreach (var annee in annnees)
             {
-                if (annee > anneeMin)
+                if (annee >= anneeMin)
                 {
                     newAnnees.Add(annee);
                 }
