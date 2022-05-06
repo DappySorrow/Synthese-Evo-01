@@ -27,8 +27,11 @@ namespace UIL
         {
             InitializeComponent();
 
+            //Pour que toutes les lettres soit de la même taille dans le ListBox
+            FontFamily courierNew = new FontFamily("Courier New");
+            lbProvinceSomme.FontFamily = courierNew;
+
             Vente.ChargerListeVentes();
-            //Vente.ventes;
         }
 
         /// <summary>
@@ -46,12 +49,12 @@ namespace UIL
 
 
                 List<string> provincesNoms = NomsDeProvincesSansDoublons(anneeDebut, anneeFin, typeVehicule);
-                lbProvince.ItemsSource = provincesNoms;
-
-                //=======================================================================
+                //lbProvince.ItemsSource = provincesNoms;
 
                 List<double> provincesSommes = TotalNbUnitesParProvince(anneeDebut, anneeFin, typeVehicule, provincesNoms);
-                lbSomme.ItemsSource = provincesSommes;
+                //lbSomme.ItemsSource = provincesSommes;
+
+                AfficherResultats(provincesNoms, provincesSommes);
             }
             else
             {
@@ -127,14 +130,21 @@ namespace UIL
             cbAnneesFin.ItemsSource = newAnnees;
         }
 
+        /// <summary>
+        /// Les provinces sous forme de liste de string sans doublons
+        /// </summary>
+        /// <param name="anneeDebut">L'année de début</param>
+        /// <param name="anneeFin">L'année de fin</param>
+        /// <param name="typeVehicule">Le type de véhicule</param>
+        /// <returns>Une liste de string contenant le noms des provinces, sans doublons</returns>
         private List<string> NomsDeProvincesSansDoublons(int anneeDebut, int anneeFin, string typeVehicule)
         {
             ObservableCollection<Vente> ventes = new ObservableCollection<Vente>(from item in Vente.ventes
-                                                                               orderby item.Province
-                                                                               where item.Annee >= anneeDebut
-                                                                               where item.Annee <= anneeFin
-                                                                               where item.TypeVeh == typeVehicule
-                                                                               select item);
+                                                                                 orderby item.Province
+                                                                                 where item.Annee >= anneeDebut
+                                                                                 where item.Annee <= anneeFin
+                                                                                 where item.TypeVeh == typeVehicule
+                                                                                 select item);
 
             List<string> provincesNoms = new List<string>();
             foreach (var vente in ventes)
@@ -144,6 +154,14 @@ namespace UIL
             return provincesNoms = provincesNoms.Distinct().ToList();
         }
 
+        /// <summary>
+        /// Retourne une liste de double représentant le nombre d'unités selon les critères de recherches
+        /// </summary>
+        /// <param name="anneeDebut">L'année de début</param>
+        /// <param name="anneeFin">L'année de fin</param>
+        /// <param name="typeVehicule">Le type de véhicule</param>
+        /// <param name="provincesNoms">Une liste ayant le noms des provinces</param>
+        /// <returns>Une liste de double contenant le total d'unités selon une province</returns>
         private List<double> TotalNbUnitesParProvince(int anneeDebut, int anneeFin, string typeVehicule, List<string> provincesNoms)
         {
             List<double> provincesSommes = new List<double>();
@@ -151,13 +169,13 @@ namespace UIL
             foreach (var province in provincesNoms)
             {
                 ObservableCollection<Vente> ventes = new ObservableCollection<Vente>(from item in Vente.ventes
-                                                                                        orderby item.Province
-                                                                                        where item.Annee >= anneeDebut
-                                                                                        where item.Annee <= anneeFin
-                                                                                        where item.Annee <= anneeFin
-                                                                                        where item.TypeVeh == typeVehicule
-                                                                                        where item.Province == province
-                                                                                        select item);
+                                                                                     orderby item.Province
+                                                                                     where item.Annee >= anneeDebut
+                                                                                     where item.Annee <= anneeFin
+                                                                                     where item.Annee <= anneeFin
+                                                                                     where item.TypeVeh == typeVehicule
+                                                                                     where item.Province == province
+                                                                                     select item);
 
 
                 foreach (var vente in ventes)
@@ -170,6 +188,44 @@ namespace UIL
             }
 
             return provincesSommes;
+        }
+
+        /// <summary>
+        /// Arranger l'espacement du résultats et envoie le résultat sous forme de liste de string directement au ListBox
+        /// </summary>
+        /// <param name="provincesNoms">La liste des noms de provinces</param>
+        /// <param name="provincesSommes">La liste des sommes des provinces</param>
+        private void AfficherResultats(List<string> provincesNoms, List<double> provincesSommes)
+        {
+            const int TAILLE = 43;
+
+            List<string> noms = new List<string>();
+
+            foreach (var nom in provincesNoms)
+            {
+                int nbEspaces = TAILLE - nom.Length;
+
+                string espaces = "";
+
+                for (int i = 0; i < nbEspaces; i++)
+                {
+                    espaces += " ";
+                }
+
+                string nomFinal = nom + espaces;
+
+                noms.Add(nomFinal);
+            }
+
+            List<string> finale = new List<string>();
+
+            for (int i = 0; i < noms.Count; i++)
+            {
+                string affichage = noms.ToArray()[i] + provincesSommes.ToArray()[i];
+                finale.Add(affichage);
+            }
+
+            lbProvinceSomme.ItemsSource = finale;
         }
     }
 }

@@ -25,11 +25,11 @@
                 <RowDefinition Height="15*"/>
             </Grid.RowDefinitions>
 
-            <Label VerticalAlignment="Center" Grid.Column="0" Content="Province"/>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Content="Province"/>
             <Label VerticalAlignment="Center" Grid.Column="1" Content="Somme en CAD (x1000)"/>
 
-            <ListBox Name="lbProvince" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0"/>
-            <ListBox Name="lbSomme" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1"/>
+            <ListBox Name="lbProvinceSomme" Grid.ColumnSpan="2" Grid.Row="1"/>
+
         </Grid>
 
 
@@ -40,11 +40,17 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
+            <Grid.Resources>
+                <Style TargetType="ComboBox">
+
+                </Style>
+            </Grid.Resources>
+
             <ComboBox Grid.Column="0" Name="cbAnneesDebut" SelectionChanged="cbAnneesDebut_SelectionChanged"/>
             <ComboBox Grid.Column="1" Name="cbAnneesFin"/>
             <ComboBox Grid.Column="2" Name="cbTypeVehicule"/>
-            <Button Grid.Column="3" Name="btnValider" Click="btnValider_Click"/>
+            <Button Grid.Column="3" Name="btnValider" Content="Valider" Click="btnValider_Click"/>
 
         </Grid>
     </Grid>
