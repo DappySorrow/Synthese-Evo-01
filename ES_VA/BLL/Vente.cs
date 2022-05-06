@@ -136,9 +136,9 @@ namespace BLL
 
         //==========================================================================================
 
-        public static ObservableCollection<Vente> ChargerListeVentes()
+        public static void ChargerListeVentes()
         {
-            DataTable dt = AccessDB.ConnecterBD();
+            DataTable dt = AccessDB.ConnecterBDVentes();
 
             var ventesList = new ObservableCollection<Vente>();
 
@@ -159,8 +159,6 @@ namespace BLL
             }
 
             ventes = ventesList;
-
-            return ventes;
         }
 
     }

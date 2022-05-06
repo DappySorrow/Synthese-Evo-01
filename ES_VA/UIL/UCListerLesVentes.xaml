@@ -6,13 +6,34 @@
              xmlns:local="clr-namespace:UIL"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <DataGrid Name="dgVentes" IsReadOnly="True" AutoGenerateColumns="False">
-        <DataGrid.Columns>
-            <DataGridTextColumn Header="Province" Width="*" Binding="{Binding Province}"/>
-            <DataGridTextColumn Header="TypeVeh" Width="*" Binding="{Binding TypeVeh}"/>
-            <DataGridTextColumn Header="Annee" Width="*" Binding="{Binding Annee}"/>
-            <DataGridTextColumn Header="NbUnites" Width="*" Binding="{Binding NbUnites}"/>
-            <DataGridTextColumn Header="Mntx1000" Width="*" Binding="{Binding Mntx1000}"/>
-        </DataGrid.Columns>
-    </DataGrid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <DataGrid Name="dgVentes" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Province" Width="*" Binding="{Binding Province}"/>
+                    <DataGridTextColumn Header="TypeVeh" Width="*" Binding="{Binding TypeVeh}"/>
+                    <DataGridTextColumn Header="Annee" Width="*" Binding="{Binding Annee}"/>
+                    <DataGridTextColumn Header="NbUnites" Width="*" Binding="{Binding NbUnites}"/>
+                    <DataGridTextColumn Header="Mntx1000" Width="*" Binding="{Binding Mntx1000}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <ComboBox Height="23" Name="cbTrier" Width="260" SelectionChanged="cbTrier_SelectionChanged">
+                <ComboBoxItem Content="Décroissant des années"/>
+                <ComboBoxItem Content="Ordre décroissant des NbUnites"/>
+                <ComboBoxItem Content="Ordre décroissant des prix moyens de vente"/>
+            </ComboBox>
+        </Grid>
+    </Grid>
 </UserControl>

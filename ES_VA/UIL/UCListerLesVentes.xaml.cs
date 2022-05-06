@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using BLL;
+using System.Collections.ObjectModel;
 
 namespace UIL
 {
@@ -24,7 +26,31 @@ namespace UIL
         public UCListerLesVentes()
         {
             InitializeComponent();
-            dgVentes.ItemsSource = Vente.ChargerListeVentes();
+            Vente.ChargerListeVentes();
+            dgVentes.ItemsSource = Vente.ventes;
+        }
+
+        private void cbTrier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            //Décroissant des années
+            if (cbTrier.SelectedIndex == 0)
+            {
+                // https://docs.microsoft.com/en-us/windows/communitytoolkit/controls/datagrid_guidance/group_sort_filter
+                dgVentes.ItemsSource = new ObservableCollection<Vente>(from item in Vente.ventes orderby item.Annee descending select item);
+            }
+
+            //Ordre décroissant des NbUnites
+            if (cbTrier.SelectedIndex == 1)
+            {
+                dgVentes.ItemsSource = new ObservableCollection<Vente>(from item in Vente.ventes orderby item.NbUnites descending select item);
+            }
+
+            //Ordre décroissant des prix moyens de vente
+            if (cbTrier.SelectedIndex == 2)
+            {
+                dgVentes.ItemsSource = new ObservableCollection<Vente>(from item in Vente.ventes orderby item.PrixMoyen descending select item);
+            }
         }
     }
 }

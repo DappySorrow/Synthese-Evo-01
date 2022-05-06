@@ -12,7 +12,7 @@ namespace DAL
 {
     public class AccessDB
     {
-        public static DataTable ConnecterBD()
+        public static DataTable ConnecterBDVentes()
         {
             MySqlConnection conn = new MySqlConnection("SERVER=localhost;DATABASE=donneesVentes;UID=root;PASSWORD=;");
 
