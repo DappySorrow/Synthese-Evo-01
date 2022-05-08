@@ -134,12 +134,11 @@ namespace UIL
             //Si la selection n'est pas vide
             else
             {
-                //Si la selection est trop grande
-                if (int.Parse(cbAnneesFin.SelectedItem.ToString()) > int.Parse(cbAnneesDebut.SelectedItem.ToString()))
+                //Si la selection de cbAnneesFin est plus grande que celle de cbAnneesDebut
+                if (!(int.Parse(cbAnneesFin.SelectedItem.ToString()) > int.Parse(cbAnneesDebut.SelectedItem.ToString())))
                 {
                     cbAnneesFin.SelectedItem = newAnnees.ToArray()[0];
                 }
-
             }
 
             cbAnneesFin.ItemsSource = newAnnees;
