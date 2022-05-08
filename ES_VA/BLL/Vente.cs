@@ -8,6 +8,7 @@ using System.ComponentModel; //Soit capable d'avertir des changements
 using System.Collections.ObjectModel;
 using DAL;
 using System.Data;
+using System.Windows;
 
 namespace BLL
 {
@@ -142,11 +143,17 @@ namespace BLL
 
             var ventesList = new ObservableCollection<Vente>();
 
+            if (dt == null)
+            {
+                MessageBox.Show("Connexion à la BD impossible. Veuillez vérifier votre connexion et redémarrer le programme.", "Connexion à la BD", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Environment.Exit(0);
+            }
+
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 var vente = new Vente
                 {
-                    //  Province    TypeVeh       Annee      NbUnites      Mntx1000
                     Province = dt.Rows[i]["Province"].ToString(),
                     TypeVeh = dt.Rows[i]["TypeVeh"].ToString(),
                     Annee = int.Parse(dt.Rows[i]["Annee"].ToString()),
