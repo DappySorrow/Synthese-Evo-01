@@ -52,5 +52,11 @@ namespace UIL
                 dgVentes.ItemsSource = new ObservableCollection<Vente>(from item in Vente.ventes orderby item.PrixMoyen descending select item);
             }
         }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window window = Window.GetWindow(this);
+            window.Title = "Liste des ventes";
+        }
     }
 }

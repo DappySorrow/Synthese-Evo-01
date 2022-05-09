@@ -24,5 +24,11 @@ namespace UIL
         {
             InitializeComponent();
         }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window window = Window.GetWindow(this);
+            window.Title = "Acceuil";
+        }
     }
 }

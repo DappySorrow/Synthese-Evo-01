@@ -9,7 +9,7 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+    <Grid Background="White" Loaded="Grid_Loaded">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -25,7 +25,7 @@
 
                 <!-- Abscisses (x) -->
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Années" Labels="{Binding Annees}"/>
+                    <lvc:Axis Title="Années"/>
                     
                 </lvc:CartesianChart.AxisX>
 

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
 using BLL;
+using System.Collections.ObjectModel;
 
 namespace UIL
 {
@@ -26,11 +27,14 @@ namespace UIL
     {
         public SeriesCollection SC { get; set; }
         //public string[] Annees;
-        public List<string> Annees = new List<string>();
+        //public List<string> Annees = new List<string>();
 
         public UCEvolutionVentes()
         {
             InitializeComponent();
+
+
+
 
             Vente.ChargerListeVentes();
 
@@ -50,6 +54,39 @@ namespace UIL
         {
             if (cbProvinces.SelectedIndex != -1 && cbVehicules.SelectedIndex != -1)
             {
+                string province = cbProvinces.SelectedItem.ToString();
+                string typeVehicule = cbVehicules.SelectedItem.ToString();
+
+
+                List<int> annees = new List<int>();
+
+                int sommeTotalVehicule = 0;
+                foreach (var vente in Vente.ventes)
+                {
+                    ObservableCollection<Vente> ventes = new ObservableCollection<Vente>(from item in Vente.ventes
+                                                                                         orderby item.Annee
+                                                                                         where item.Province == province
+                                                                                         where item.TypeVeh == typeVehicule
+                                                                                         select item);
+
+
+                    foreach (var annee in ventes)
+                    {
+                        sommeTotalVehicule += vente.Annee;
+                    }
+
+                    annees.Add(sommeTotalVehicule);
+                    sommeTotalVehicule = 0;
+
+                }
+
+                //return provincesSommes;
+
+
+
+
+
+
                 SC = new SeriesCollection()
                 {
                     new ColumnSeries
@@ -62,6 +99,12 @@ namespace UIL
 
                 DataContext = this;
             }
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window window = Window.GetWindow(this);
+            window.Title = "Évolution des ventes";
         }
     }
 }

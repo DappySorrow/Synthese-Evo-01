@@ -55,11 +55,6 @@ namespace UIL
             else
             {
                 MessageBox.Show("Veillez remplir tous les champs.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                foreach (var item in Vente.ventes)
-                {
-                    Console.WriteLine((item as Vente).Annee);
-                }
             }
         }
 
@@ -71,14 +66,15 @@ namespace UIL
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
 
-            List<int> annnees = Vente.ChargerListeDatesUniques();
-
-            cbAnneesDebut.ItemsSource = annnees;
+            Window window = Window.GetWindow(this);
+            window.Title = "Ventes par provinces";
 
             //================================================================
 
-            List<string> typesVehicule = Vente.ChargerListeVehiculesUniques();
+            List<int> annnees = Vente.ChargerListeDatesUniques();
+            cbAnneesDebut.ItemsSource = annnees;
 
+            List<string> typesVehicule = Vente.ChargerListeVehiculesUniques();
             cbTypeVehicule.ItemsSource = typesVehicule;
         }
 
@@ -93,12 +89,7 @@ namespace UIL
             int anneeMin = int.Parse(cbAnneesDebut.SelectedItem.ToString());
 
             //La liste de toute les années, sans doublons
-            List<int> annnees = new List<int>();
-            foreach (var vente in Vente.ventes)
-            {
-                annnees.Add((vente as Vente).Annee);
-            }
-            annnees = annnees.Distinct().ToList();
+            List<int> annnees = Vente.ChargerListeDatesUniques();
 
             //-----------------------------------------------------------------
 
