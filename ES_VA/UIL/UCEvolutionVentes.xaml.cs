@@ -26,23 +26,35 @@ namespace UIL
     public partial class UCEvolutionVentes : UserControl
     {
         public SeriesCollection SC { get; set; }
-        //public string[] Annees;
-        //public List<string> Annees = new List<string>();
+        public string[] Annees { get; set; }
+
 
         public UCEvolutionVentes()
         {
             InitializeComponent();
-
-
-
-
             Vente.ChargerListeVentes();
+
+            //=======================================================
+
+            List<int> lstDates = Vente.ChargerListeDatesUniques();
+            List<string> lstAnnees = new List<string>();
+
+            foreach (var date in lstDates)
+            {
+                lstAnnees.Add(date.ToString());
+            }
+
+            Annees = lstAnnees.ToArray();
+
+            //=======================================================
 
             List<string> provinces = Vente.ChargerListeProvincesUniques();
             cbProvinces.ItemsSource = provinces;
 
             List<string> typesVehicule = Vente.ChargerListeVehiculesUniques();
             cbVehicules.ItemsSource = typesVehicule;
+
+
         }
 
         /// <summary>
@@ -57,10 +69,10 @@ namespace UIL
                 string province = cbProvinces.SelectedItem.ToString();
                 string typeVehicule = cbVehicules.SelectedItem.ToString();
 
+                //Liste de la somme moyenne selon l'année et le type de véhicule
+                List<double> lstSommeMoyenne = new List<double>();
 
-                List<int> annees = new List<int>();
-
-                int sommeTotalVehicule = 0;
+                double prixMoyen = 0;
                 foreach (var vente in Vente.ventes)
                 {
                     ObservableCollection<Vente> ventes = new ObservableCollection<Vente>(from item in Vente.ventes
@@ -72,19 +84,16 @@ namespace UIL
 
                     foreach (var annee in ventes)
                     {
-                        sommeTotalVehicule += vente.Annee;
+                        prixMoyen += vente.PrixMoyen;
                     }
 
-                    annees.Add(sommeTotalVehicule);
-                    sommeTotalVehicule = 0;
+                    lstSommeMoyenne.Add(prixMoyen);
+                    prixMoyen = 0;
 
                 }
 
-                //return provincesSommes;
 
-
-
-
+                //================================================================================================
 
 
                 SC = new SeriesCollection()
@@ -92,10 +101,13 @@ namespace UIL
                     new ColumnSeries
                     {
                         Title = "Évolution des ventes",
-                        //Le values des ventes
-                        Values = new ChartValues<double>{ 1, 2},
                     }
                 };
+                foreach (var somme in lstSommeMoyenne)
+                {
+                    //SC[0].Values.Add(somme);
+
+                }
 
                 DataContext = this;
             }

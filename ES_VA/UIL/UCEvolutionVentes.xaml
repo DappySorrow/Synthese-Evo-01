@@ -20,13 +20,12 @@
         </Grid.RowDefinitions>
 
         <!-- Graphique-->
-            <Grid>
+        <Grid>
             <lvc:CartesianChart Series="{Binding SC}" LegendLocation="Top">
 
                 <!-- Abscisses (x) -->
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Années"/>
-                    
+                    <lvc:Axis Title="Années" Labels="{Binding Annees}"/>
                 </lvc:CartesianChart.AxisX>
 
                 <!-- Ordonnées (y) -->
@@ -56,9 +55,9 @@
                 <Label Content="Type de véhicule"/>
                 <ComboBox Name="cbVehicules" SelectionChanged="cb_SelectionChanged"/>
             </StackPanel>
-            
+
         </Grid>
 
-        
+
     </Grid>
 </UserControl>
