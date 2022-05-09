@@ -71,27 +71,13 @@ namespace UIL
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
 
-            List<int> annnees = new List<int>();
-
-            foreach (var vente in Vente.ventes)
-            {
-                annnees.Add((vente as Vente).Annee);
-            }
-
-            annnees = annnees.Distinct().ToList();
+            List<int> annnees = Vente.ChargerListeDatesUniques();
 
             cbAnneesDebut.ItemsSource = annnees;
 
             //================================================================
 
-            List<string> typesVehicule = new List<string>();
-
-            foreach (var vente in Vente.ventes)
-            {
-                typesVehicule.Add((vente as Vente).TypeVeh);
-            }
-
-            typesVehicule = typesVehicule.Distinct().ToList();
+            List<string> typesVehicule = Vente.ChargerListeVehiculesUniques();
 
             cbTypeVehicule.ItemsSource = typesVehicule;
         }

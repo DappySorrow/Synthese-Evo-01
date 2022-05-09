@@ -168,5 +168,45 @@ namespace BLL
             ventes = ventesList;
         }
 
+        public static List<int> ChargerListeDatesUniques()
+        {
+            List<int> annnees = new List<int>();
+
+            foreach (var vente in ventes)
+            {
+                annnees.Add((vente as Vente).Annee);
+            }
+
+            annnees = annnees.Distinct().ToList();
+
+            return annnees;
+        }
+
+        public static List<string> ChargerListeVehiculesUniques()
+        {
+            List<string> typesVehicule = new List<string>();
+
+            foreach (var vente in Vente.ventes)
+            {
+                typesVehicule.Add((vente as Vente).TypeVeh);
+            }
+
+            typesVehicule = typesVehicule.Distinct().ToList();
+
+            return typesVehicule;
+        }
+
+        public static List<string> ChargerListeProvincesUniques(){
+            List<string> provinces = new List<string>();
+
+            foreach (var vente in Vente.ventes)
+            {
+                provinces.Add((vente as Vente).Province);
+            }
+
+            provinces = provinces.Distinct().ToList();
+
+            return provinces;
+        }
     }
 }

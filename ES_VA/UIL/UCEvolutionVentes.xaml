@@ -39,8 +39,24 @@
 
         <!-- Options -->
         <Grid Grid.Row="1">
-            <ComboBox Name="cbProvinces" SelectionChanged="cb_SelectionChanged"/>
-            <ComboBox Name="cbVehicules" SelectionChanged="cb_SelectionChanged"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <Label Content="Province"/>
+                <ComboBox Name="cbProvinces" SelectionChanged="cb_SelectionChanged"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <Label Content="Type de véhicule"/>
+                <ComboBox Name="cbVehicules" SelectionChanged="cb_SelectionChanged"/>
+            </StackPanel>
+            
         </Grid>
 
         

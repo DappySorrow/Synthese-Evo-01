@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 using LiveCharts;
 using LiveCharts.Wpf;
+using BLL;
 
 namespace UIL
 {
@@ -31,24 +32,36 @@ namespace UIL
         {
             InitializeComponent();
 
-            SC = new SeriesCollection()
-            {
-                new ColumnSeries
-                {
-                    Title = "Évolution des ventes",
-                    DataLabels = true,
-                    //Le values des ventes
-                    Values = new ChartValues<double>{ 1, 2},
-                }
-            };
+            Vente.ChargerListeVentes();
 
-            DataContext = this;
+            List<string> provinces = Vente.ChargerListeProvincesUniques();
+            cbProvinces.ItemsSource = provinces;
+
+            List<string> typesVehicule = Vente.ChargerListeVehiculesUniques();
+            cbVehicules.ItemsSource = typesVehicule;
         }
 
-        //Quand on combo box recoit une demande de changement.
+        /// <summary>
+        /// Quand les ComboBox changent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cbProvinces.SelectedIndex != -1 && cbVehicules.SelectedIndex != -1)
+            {
+                SC = new SeriesCollection()
+                {
+                    new ColumnSeries
+                    {
+                        Title = "Évolution des ventes",
+                        //Le values des ventes
+                        Values = new ChartValues<double>{ 1, 2},
+                    }
+                };
 
+                DataContext = this;
+            }
         }
     }
 }
