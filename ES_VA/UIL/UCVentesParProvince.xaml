@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UIL"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="DarkGray" Loaded="Grid_Loaded">
+    <Grid Loaded="Grid_Loaded">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -41,15 +41,23 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid.Resources>
-                <Style TargetType="ComboBox">
+            <StackPanel Grid.Column="0">
+                <Label Content="Annees début"/>
+                <ComboBox Name="cbAnneesDebut" SelectionChanged="cbAnneesDebut_SelectionChanged"/>
+            </StackPanel>
 
-                </Style>
-            </Grid.Resources>
+            <StackPanel Grid.Column="1">
+                <Label Content="Annees fin"/>
+                <ComboBox Name="cbAnneesFin"/>
+            </StackPanel>
 
-            <ComboBox Grid.Column="0" Name="cbAnneesDebut" SelectionChanged="cbAnneesDebut_SelectionChanged"/>
-            <ComboBox Grid.Column="1" Name="cbAnneesFin"/>
-            <ComboBox Grid.Column="2" Name="cbTypeVehicule"/>
+            <StackPanel Grid.Column="2">
+                <Label Content="Type de véhicule"/>
+                <ComboBox Name="cbTypeVehicule"/>
+            </StackPanel>
+            
+            
+            
             <Button Grid.Column="3" Name="btnValider" Content="Valider" Click="btnValider_Click"/>
 
         </Grid>

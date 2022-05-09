@@ -114,19 +114,8 @@ namespace UIL
                 
                 foreach (double moyenne in lstMoyenne)
                 {
-
-                    SC[0].Values.Add(moyenne);
-                    
+                    SC[0].Values.Add(moyenne);              
                 }
-                
-
-                /*
-                foreach (var moyenne in lstMoyenne)
-                {
-                    Console.WriteLine(moyenne);
-                }
-                Console.WriteLine("================================");
-                */
 
                 //On applique le data
                 Chart.DataContext = this;
