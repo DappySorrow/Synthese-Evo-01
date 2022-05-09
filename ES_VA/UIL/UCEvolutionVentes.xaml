@@ -21,7 +21,7 @@
 
         <!-- Graphique-->
         <Grid>
-            <lvc:CartesianChart Series="{Binding SC}" LegendLocation="Top">
+            <lvc:CartesianChart Name="Chart" Series="{Binding SC}" LegendLocation="Top">
 
                 <!-- Abscisses (x) -->
                 <lvc:CartesianChart.AxisX>

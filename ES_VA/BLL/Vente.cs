@@ -132,7 +132,21 @@ namespace BLL
         //Le prix moyen de vente d’un type de véhicule pour une année et une province donnée
         private double CalculerPrixMoyen()
         {
-            return this.mntx1000 / this.NbUnites;
+            //On regarde toutes les ventes qui sont de la même année, modèle et province
+            ObservableCollection<Vente> ventesSort = new ObservableCollection<Vente>(from vente in ventes
+                                                                                     where vente.Annee == annee
+                                                                                     where vente.Province == province
+                                                                                     where vente.TypeVeh == TypeVeh
+                                                                                     select vente);
+            //Commence à 0
+            double prixMoyen = 0;
+            foreach (var venteSort in ventesSort)
+            {
+                prixMoyen += venteSort.Mntx1000 / venteSort.NbUnites;
+            }
+
+            //Faire la moyenne
+            return prixMoyen / ventesSort.Count();
         }
 
         //==========================================================================================
@@ -196,7 +210,8 @@ namespace BLL
             return typesVehicule;
         }
 
-        public static List<string> ChargerListeProvincesUniques(){
+        public static List<string> ChargerListeProvincesUniques()
+        {
             List<string> provinces = new List<string>();
 
             foreach (var vente in Vente.ventes)

@@ -64,52 +64,71 @@ namespace UIL
         /// <param name="e"></param>
         private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+
             if (cbProvinces.SelectedIndex != -1 && cbVehicules.SelectedIndex != -1)
             {
+                //Prendre l'information des ComboBox
                 string province = cbProvinces.SelectedItem.ToString();
                 string typeVehicule = cbVehicules.SelectedItem.ToString();
 
-                //Liste de la somme moyenne selon l'année et le type de véhicule
-                List<double> lstSommeMoyenne = new List<double>();
+                Console.WriteLine(province + " et " + typeVehicule);
 
-                double prixMoyen = 0;
-                foreach (var vente in Vente.ventes)
+                //La listes des années uniques
+                List<int> lstAnnees = Vente.ChargerListeDatesUniques();
+
+                //Liste de la somme moyenne selon l'année et le type de véhicule
+                List<double> lstMoyenne = new List<double>();
+
+                //Trouver le prix moyen selon le vehicule, la province et l'année
+                foreach (int annee in lstAnnees)
                 {
+
                     ObservableCollection<Vente> ventes = new ObservableCollection<Vente>(from item in Vente.ventes
-                                                                                         orderby item.Annee
+                                                                                         where item.Annee == annee
                                                                                          where item.Province == province
                                                                                          where item.TypeVeh == typeVehicule
                                                                                          select item);
 
-
-                    foreach (var annee in ventes)
+                    //Commence à 0
+                    double prixMoyen = 0;
+                    foreach (Vente vente in ventes)
                     {
-                        prixMoyen += vente.PrixMoyen;
+                        prixMoyen = vente.PrixMoyen;
                     }
 
-                    lstSommeMoyenne.Add(prixMoyen);
-                    prixMoyen = 0;
-
+                    lstMoyenne.Add(prixMoyen);
                 }
 
-
                 //================================================================================================
-
 
                 SC = new SeriesCollection()
                 {
                     new ColumnSeries
                     {
                         Title = "Évolution des ventes",
+                        Values = new ChartValues<double>{}
                     }
                 };
-                foreach (var somme in lstSommeMoyenne)
+
+                
+                foreach (double moyenne in lstMoyenne)
                 {
-                    //SC[0].Values.Add(somme);
 
+                    SC[0].Values.Add(moyenne);
+                    
                 }
+                
 
-                DataContext = this;
+                /*
+                foreach (var moyenne in lstMoyenne)
+                {
+                    Console.WriteLine(moyenne);
+                }
+                Console.WriteLine("================================");
+                */
+
+                Chart.DataContext = this;
             }
         }
 
