@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using System.ComponentModel; //Soit capable d'avertir des changements
 using System.Collections.ObjectModel;
@@ -138,6 +136,8 @@ namespace BLL
                                                                                      where vente.Province == province
                                                                                      where vente.TypeVeh == TypeVeh
                                                                                      select vente);
+
+            /*
             //Commence à 0
             double prixMoyen = 0;
             foreach (var venteSort in ventesSort)
@@ -146,7 +146,21 @@ namespace BLL
             }
 
             //Faire la moyenne
-            return prixMoyen / ventesSort.Count();
+            return prixMoyen;
+            */
+
+            Vente venteSort = ventesSort.ElementAt(0);
+
+            double reponse = venteSort.Mntx1000 / venteSort.NbUnites;
+
+            if (reponse > 0)
+            {
+                return reponse;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         //==========================================================================================

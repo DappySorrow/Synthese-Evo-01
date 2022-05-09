@@ -64,15 +64,15 @@ namespace UIL
         /// <param name="e"></param>
         private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-
+            //Si deux options sont seclectionné
             if (cbProvinces.SelectedIndex != -1 && cbVehicules.SelectedIndex != -1)
             {
+                //On met ou remet à 0 le data
+                Chart.DataContext = null;
+
                 //Prendre l'information des ComboBox
                 string province = cbProvinces.SelectedItem.ToString();
                 string typeVehicule = cbVehicules.SelectedItem.ToString();
-
-                Console.WriteLine(province + " et " + typeVehicule);
 
                 //La listes des années uniques
                 List<int> lstAnnees = Vente.ChargerListeDatesUniques();
@@ -128,6 +128,7 @@ namespace UIL
                 Console.WriteLine("================================");
                 */
 
+                //On applique le data
                 Chart.DataContext = this;
             }
         }
