@@ -115,28 +115,63 @@ namespace UIL
             Connexion.ChargerFichier();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Valider_Click(object sender, RoutedEventArgs e)
         {
-            bool validation = false;
-
-            foreach (var utilisateur in Connexion.utilisateurs)
+            if (tbId.Text != "" && pbPass.Password != "")
             {
-                if (tbId.Text == utilisateur.Id && pbPass.Password == utilisateur.Passwd)
+                bool validation = false;
+
+                Connexion connexion = Connexion.GetInstance(tbId.Text, pbPass.Password);
+
+                foreach (var utilisateur in Connexion.utilisateurs)
                 {
-                    validation = true;
+                    if (connexion.Id == utilisateur.Id && connexion.Passwd == utilisateur.Passwd)
+                    {
+                        validation = true;
+                    }
                 }
-            }
 
-            if (validation)
-            {
-                MessageBox.Show("Bonjour", "Réussite", MessageBoxButton.OK, MessageBoxImage.Information);
-                SectionMenu.Visibility = Visibility.Visible;
+                if (validation)
+                {
+                    MessageBox.Show("Bonjour " + connexion.Id + ".", "Réussite", MessageBoxButton.OK, MessageBoxImage.Information);
+                    SectionMenu.Visibility = Visibility.Visible;
+                    SectionConnexion.Visibility = Visibility.Hidden;
+                    SectionDeconnection.Visibility = Visibility.Visible;
+
+                    txtId.Text = connexion.Id;
+                }
+                else
+                {
+                    MessageBox.Show("Id ou Pass invalide", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Connexion.RemoveInstance();
+                }
             }
             else
             {
-                MessageBox.Show("Id ou Pass invalide", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Le Id ou Pass ne peuvent être null", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            
+        }
+
+        private void Deconnection_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (MessageBox.Show("Voulez-vous vraiment vous déconnecter?", "Deconnection", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+            {
+                SectionMenu.Visibility = Visibility.Hidden;
+                SectionConnexion.Visibility = Visibility.Visible;
+                SectionDeconnection.Visibility = Visibility.Hidden;
+
+                tbId.Text = "";
+                pbPass.Password = "";
+
+                changerEcran(Accueil);
+
+                ListerLesVentes = new UCListerLesVentes();
+                VentesParProvince = new UCVentesParProvince();
+                EvolutionVentes = new UCEvolutionVentes();
+
+                Connexion.RemoveInstance();
+            }
         }
     }
 }

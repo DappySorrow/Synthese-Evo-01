@@ -62,7 +62,7 @@
                 <Button Name="btnEvolution" Content="Évolution des ventes" Click="btnEvolution_Click"/>
                 <Button Name="btnSortie" Content="Sortie" Click="btnSortie_Click"/>
             </StackPanel>
-
+            
             <Grid Grid.Row="2" Name="SectionConnexion">
                 <StackPanel VerticalAlignment="Center">
                     <WrapPanel Margin="0,0,0,5">
@@ -75,9 +75,22 @@
                         <PasswordBox Name="pbPass" Width="170"/>
                     </WrapPanel>
 
-                    <Button Content="Valider" Template="{StaticResource StyleButton}" Click="Button_Click"/>
+                    <Button Content="Valider" Template="{StaticResource StyleButton}" Click="Valider_Click"/>
                 </StackPanel>
             </Grid>
+
+            <Grid Grid.Row="2" Name="SectionDeconnection" Visibility="Hidden">
+                <StackPanel VerticalAlignment="Center">
+
+                        <Label Content="Connecter en tant que " HorizontalAlignment="Center"/>
+                    <TextBlock Name="txtId" Text="template id" HorizontalAlignment="Center"/>
+
+                    
+                    <Button Content="Déconnection" Template="{StaticResource StyleButton}" Click="Deconnection_Click"/>
+                </StackPanel>
+            </Grid>
+
+
         </Grid>
     </Grid>
 </Window>

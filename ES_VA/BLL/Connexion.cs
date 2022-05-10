@@ -34,6 +34,11 @@ namespace BLL
             return instance;
         }
 
+        public static void RemoveInstance()
+        {
+            instance = null;
+        }
+
         //=================================================================================================
 
         //Constructeur privé
@@ -43,9 +48,9 @@ namespace BLL
             Passwd = passwd;
         }
 
+        //Constructeur privé
         private Connexion()
         {
-
         }
 
         public string Id { get; set; }
