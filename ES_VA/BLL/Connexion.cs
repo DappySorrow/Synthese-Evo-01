@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace BLL
 {
+    
     public class Connexion
     {
         static public ObservableCollection<Connexion> utilisateurs = new ObservableCollection<Connexion>();
@@ -20,12 +21,13 @@ namespace BLL
 
         //Méthode publique et statique
 
-        public static Connexion GetInstance()
+        // passer parametre dans get instance
+        public static Connexion GetInstance(string id, string passwd)
         {
             //Si on n'a pas encore une instance de l'objet Auto, alors on le crée
             if (Connexion.instance == null)
             {
-                Connexion.instance = new Connexion();
+                Connexion.instance = new Connexion(id, passwd);
             }
 
             //Si l'instance de l'objet existe déjà, on va juste la renvoyer
@@ -33,11 +35,10 @@ namespace BLL
         }
 
         //Constructeur privé
-        private Connexion()
-        {
-            //int id, string passwd
-            //Id = id;
-            //Passwd = passwd;
+        private Connexion(string id, string passwd)
+        { 
+            Id = id;
+            Passwd = passwd;
         }
 
         public string Id { get; set; }
