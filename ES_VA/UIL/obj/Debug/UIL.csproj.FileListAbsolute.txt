@@ -94,3 +94,4 @@ C:\Users\Jean_\Desktop\Synthese-Evo-01\ES_VA\UIL\obj\Debug\UIL.csproj.CoreCompil
 C:\Users\Jean_\Desktop\Synthese-Evo-01\ES_VA\UIL\obj\Debug\UIL.csproj.CopyComplete
 C:\Users\Jean_\Desktop\Synthese-Evo-01\ES_VA\UIL\obj\Debug\UIL.exe
 C:\Users\Jean_\Desktop\Synthese-Evo-01\ES_VA\UIL\obj\Debug\UIL.pdb
+C:\Users\Jean_\Desktop\Synthese-Evo-01\ES_VA\UIL\obj\Debug\App.baml

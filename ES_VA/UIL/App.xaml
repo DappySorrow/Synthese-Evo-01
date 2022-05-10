@@ -4,6 +4,21 @@
              xmlns:local="clr-namespace:UIL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <!-- Style globale ayant une clé -->
+        <Style TargetType="Grid" x:Key="DarkBackground">
+            <Setter Property="Background" Value="DarkGray"/>
+        </Style>
+
+        <!-- Style globale-->
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="FontFamily" Value="Courier New"/>
+        </Style>
+
+        <!-- Style globale-->
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Courier New"/>
+        </Style>
+        
     </Application.Resources>
 </Application>
