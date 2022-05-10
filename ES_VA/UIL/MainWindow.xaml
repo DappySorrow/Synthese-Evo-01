@@ -8,7 +8,12 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Window.Resources>
-        
+        <ControlTemplate x:Key="StyleButton" TargetType="Button">
+            <Grid>
+                <Border Name="BaseRectangle" Background="LightGray" CornerRadius="10,0,10,0"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </ControlTemplate>
     </Window.Resources>
 
     <Grid>
@@ -19,30 +24,47 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <!--UserControl-->
-        <Grid Grid.Column="0" Name="userGrid">
-            
-        </Grid>
 
-        <!--Les bouttons-->
+        <!--UserControl-->
+        <Grid Grid.Column="0" Name="userGrid"/>
+
+        <!--Côté droit-->
         <Grid Grid.Column="1">
             <Grid.Resources>
                 <Style TargetType="Button">
-                    <Setter Property="Background" Value="DarkBlue"/>
-                    <Setter Property="Foreground" Value="White"/>
                     <Setter Property="Height" Value="25"/>
                     <Setter Property="Width" Value="150"/>
                     <Setter Property="Margin" Value="0,5,0,5"/>
                 </Style>
             </Grid.Resources>
-            
-            <StackPanel VerticalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Icon -->
+            <Grid Grid.Row="0" Name="iconGrid">
+                
+            </Grid>
+
+            <!--Boutton-->
+            <StackPanel VerticalAlignment="Center" Grid.Row="1">
+
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Template" Value="{StaticResource StyleButton}"/>
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Height" Value="25"/>
+                    </Style>
+                </StackPanel.Resources>
                 <Button Name="btnVentes" Content="Lister les ventes" Click="btnVentes_Click"/>
                 <Button Name="btnProvince" Content="Ventes par province" Click="btnProvince_Click"/>
                 <Button Name="btnEvolution" Content="Évolution des ventes" Click="btnEvolution_Click"/>
                 <Button Name="btnSortie" Content="Sortie" Click="btnSortie_Click"/>
             </StackPanel>
+
         </Grid>
     </Grid>
 </Window>

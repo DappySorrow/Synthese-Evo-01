@@ -6,6 +6,21 @@
              xmlns:local="clr-namespace:UIL"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <!-- Style local 1 -->
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Style local 2 -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="LightGray"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Loaded="Grid_Loaded" Style="{StaticResource ResourceKey=DarkBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -29,11 +44,17 @@
 
 
         <Grid Grid.Row="1">
-            <ComboBox Height="23" Name="cbTrier" Width="260" SelectionChanged="cbTrier_SelectionChanged">
-                <ComboBoxItem Content="Décroissant des années"/>
-                <ComboBoxItem Content="Ordre décroissant des NbUnites"/>
-                <ComboBoxItem Content="Ordre décroissant des prix moyens de vente"/>
-            </ComboBox>
+            <StackPanel>
+
+                <Label Content="Type d'affichage"/>
+
+                <ComboBox Height="23" Name="cbTrier" Width="260" SelectionChanged="cbTrier_SelectionChanged">
+                    <ComboBoxItem Content="Ordre décroissant des années"/>
+                    <ComboBoxItem Content="Ordre décroissant des NbUnites"/>
+                    <ComboBoxItem Content="Ordre décroissant des prix moyens de vente"/>
+                </ComboBox>
+            </StackPanel>
+
         </Grid>
     </Grid>
 </UserControl>

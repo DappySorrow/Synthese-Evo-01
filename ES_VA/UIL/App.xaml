@@ -5,17 +5,17 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         
-        <!-- Style globale ayant une clé -->
+        <!-- Style global ayant une clé -->
         <Style TargetType="Grid" x:Key="DarkBackground">
             <Setter Property="Background" Value="DarkGray"/>
         </Style>
 
-        <!-- Style globale-->
+        <!-- Style global-->
         <Style TargetType="ComboBoxItem">
             <Setter Property="FontFamily" Value="Courier New"/>
         </Style>
 
-        <!-- Style globale-->
+        <!-- Style global-->
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="Courier New"/>
         </Style>
