@@ -32,7 +32,7 @@ namespace UIL
         public UCAccueil Accueil = new UCAccueil();
 
         public UCIcon CandaIcon = new UCIcon();
-        
+
         public UCListerLesVentes ListerLesVentes = new UCListerLesVentes();
         public UCVentesParProvince VentesParProvince = new UCVentesParProvince();
         public UCEvolutionVentes EvolutionVentes = new UCEvolutionVentes();
@@ -89,7 +89,7 @@ namespace UIL
         /// <param name="e"></param>
         private void btnSortie_Click(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show("Êtes-vous sûr de vouloir arrêter le programme?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Êtes-vous sûr de vouloir arrêter le programme?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 this.Close();
             }
@@ -107,6 +107,36 @@ namespace UIL
             Grid.SetRow(Ecran, 0);
             Grid.SetColumn(Ecran, 0);
             userGrid.Children.Add(Ecran);
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Menu.Visibility = Visibility.Hidden;
+            Connexion.ChargerFichier();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            bool validation = false;
+
+            foreach (var utilisateur in Connexion.utilisateurs)
+            {
+                if (tbId.Text == utilisateur.Id && pbPass.Password == utilisateur.Passwd)
+                {
+                    validation = true;
+                }
+            }
+
+            if (validation)
+            {
+                MessageBox.Show("Bonjour", "Réussite", MessageBoxButton.OK, MessageBoxImage.Information);
+                Menu.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("Id ou Pass invalide", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

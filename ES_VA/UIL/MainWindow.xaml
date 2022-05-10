@@ -16,10 +16,10 @@
         </ControlTemplate>
     </Window.Resources>
 
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -48,7 +48,7 @@
             <Grid Grid.Row="0" Name="iconGrid"/>
 
             <!--Boutton-->
-            <StackPanel VerticalAlignment="Center" Grid.Row="1">
+            <StackPanel VerticalAlignment="Center" Grid.Row="1" Name="Menu">
 
                 <StackPanel.Resources>
                     <Style TargetType="Button">
@@ -63,6 +63,21 @@
                 <Button Name="btnSortie" Content="Sortie" Click="btnSortie_Click"/>
             </StackPanel>
 
+            <Grid Grid.Row="2" Name="Co">
+                <StackPanel VerticalAlignment="Center">
+                    <WrapPanel Margin="0,0,0,5">
+                        <Label Content="Id  "/>
+                        <TextBox Name="tbId" Width="175"/>
+                    </WrapPanel>
+
+                    <WrapPanel Margin="0,0,0,5">
+                        <Label Content="Pass"/>
+                        <PasswordBox Name="pbPass" Width="175"/>
+                    </WrapPanel>
+
+                    <Button Content="Valider" Template="{StaticResource StyleButton}" Click="Button_Click"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
