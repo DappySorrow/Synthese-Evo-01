@@ -188,7 +188,7 @@ namespace UIL
         /// <param name="provincesSommes">La liste des sommes des provinces</param>
         private void AfficherResultats(List<string> provincesNoms, List<double> provincesSommes)
         {
-            const int TAILLE = 43;
+            const int TAILLE = 39;
 
             List<string> noms = new List<string>();
 

@@ -67,12 +67,12 @@
                 <StackPanel VerticalAlignment="Center">
                     <WrapPanel Margin="0,0,0,5">
                         <Label Content="Id  "/>
-                        <TextBox Name="tbId" Width="175"/>
+                        <TextBox Name="tbId" Width="170"/>
                     </WrapPanel>
 
                     <WrapPanel Margin="0,0,0,5">
                         <Label Content="Pass"/>
-                        <PasswordBox Name="pbPass" Width="175"/>
+                        <PasswordBox Name="pbPass" Width="170"/>
                     </WrapPanel>
 
                     <Button Content="Valider" Template="{StaticResource StyleButton}" Click="Button_Click"/>

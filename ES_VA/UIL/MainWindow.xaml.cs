@@ -91,7 +91,7 @@ namespace UIL
         {
             if (MessageBox.Show("Êtes-vous sûr de vouloir arrêter le programme?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                this.Close();
+                Close();
             }
         }
 
