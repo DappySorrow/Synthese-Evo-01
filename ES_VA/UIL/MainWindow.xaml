@@ -44,10 +44,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Icon -->
-            <Grid Grid.Row="0" Name="iconGrid">
-                
-            </Grid>
+            <!--Icon-->
+            <Grid Grid.Row="0" Name="iconGrid"/>
 
             <!--Boutton-->
             <StackPanel VerticalAlignment="Center" Grid.Row="1">

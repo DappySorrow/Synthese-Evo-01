@@ -27,8 +27,11 @@ namespace UIL
     {
 
         public UserControl Ecran { get; set; }
+        public UserControl PlaceIcon { get; set; }
 
         public UCAccueil Accueil = new UCAccueil();
+
+        public UCIcon CandaIcon = new UCIcon();
         
         public UCListerLesVentes ListerLesVentes = new UCListerLesVentes();
         public UCVentesParProvince VentesParProvince = new UCVentesParProvince();
@@ -42,6 +45,11 @@ namespace UIL
             Grid.SetRow(Ecran, 0);
             Grid.SetColumn(Ecran, 0);
             userGrid.Children.Add(Ecran);
+
+            PlaceIcon = CandaIcon;
+            Grid.SetRow(PlaceIcon, 0);
+            Grid.SetColumn(PlaceIcon, 0);
+            iconGrid.Children.Add(PlaceIcon);
         }
 
         /// <summary>

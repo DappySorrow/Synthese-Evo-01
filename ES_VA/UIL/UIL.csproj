@@ -67,6 +67,9 @@
     <Compile Include="UCEvolutionVentes.xaml.cs">
       <DependentUpon>UCEvolutionVentes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UCIcon.xaml.cs">
+      <DependentUpon>UCIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UCListerLesVentes.xaml.cs">
       <DependentUpon>UCListerLesVentes.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UCEvolutionVentes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UCIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,6 +141,9 @@
       <Project>{493fe43a-3ad6-4884-9200-4f8a2f473ad2}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Canada.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
