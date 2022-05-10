@@ -111,7 +111,7 @@ namespace UIL
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            Menu.Visibility = Visibility.Hidden;
+            SectionMenu.Visibility = Visibility.Hidden;
             Connexion.ChargerFichier();
         }
 
@@ -130,7 +130,7 @@ namespace UIL
             if (validation)
             {
                 MessageBox.Show("Bonjour", "Réussite", MessageBoxButton.OK, MessageBoxImage.Information);
-                Menu.Visibility = Visibility.Visible;
+                SectionMenu.Visibility = Visibility.Visible;
             }
             else
             {
