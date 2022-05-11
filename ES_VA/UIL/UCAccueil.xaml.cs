@@ -14,6 +14,11 @@ namespace UIL
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Lors que la grille est loadée, changer le titre de la fenêtre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             Window window = Window.GetWindow(this);

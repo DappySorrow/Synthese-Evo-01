@@ -14,7 +14,7 @@ namespace BLL
     public class Vente : INotifyPropertyChanged
     {
 
-        static public ObservableCollection<Vente> ventes = new ObservableCollection<Vente>();
+        public static ObservableCollection<Vente> ventes = new ObservableCollection<Vente>();
 
         public void NotifyPropertyChanged(string propName)
         {
@@ -127,7 +127,10 @@ namespace BLL
             }
         }
 
-        //Le prix moyen de vente d’un type de véhicule pour une année et une province donnée
+        /// <summary>
+        /// Retourne le prix moyen de vente d’un type de véhicule pour une année et une province donnée
+        /// </summary>
+        /// <returns>Le prix moyen dune vente</returns>
         private double CalculerPrixMoyen()
         {
             
@@ -156,6 +159,9 @@ namespace BLL
 
         //==========================================================================================
 
+        /// <summary>
+        /// Met dans la variable "ventes" la laiste des ventes
+        /// </summary>
         public static void ChargerListeVentes()
         {
             DataTable dt = AccessDB.ConnecterBDVentes();
@@ -187,6 +193,10 @@ namespace BLL
             ventes = ventesList;
         }
 
+        /// <summary>
+        /// Retourne une liste contenant les années de vente uniques
+        /// </summary>
+        /// <returns>Les années de vente uniques</returns>
         public static List<int> ChargerListeDatesUniques()
         {
             List<int> annnees = new List<int>();
@@ -201,6 +211,10 @@ namespace BLL
             return annnees;
         }
 
+        /// <summary>
+        /// Retourne une liste contenant les modèles de véhicule en vente uniques
+        /// </summary>
+        /// <returns>Les modèles de véhicule distinct</returns>
         public static List<string> ChargerListeVehiculesUniques()
         {
             List<string> typesVehicule = new List<string>();
@@ -215,6 +229,10 @@ namespace BLL
             return typesVehicule;
         }
 
+        /// <summary>
+        /// Retourne une liste contenant les noms de provinces de vente uniques
+        /// </summary>
+        /// <returns>les noms de provinces distinct</returns>
         public static List<string> ChargerListeProvincesUniques()
         {
             List<string> provinces = new List<string>();

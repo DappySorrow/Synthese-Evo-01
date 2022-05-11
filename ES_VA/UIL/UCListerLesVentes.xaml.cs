@@ -19,13 +19,18 @@ namespace UIL
             dgVentes.ItemsSource = Vente.ventes;
         }
 
+        /// <summary>
+        /// Selon la selection du ComboBox, change le triage du DataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbTrier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             //Décroissant des années
             if (cbTrier.SelectedIndex == 0)
             {
-                // https://docs.microsoft.com/en-us/windows/communitytoolkit/controls/datagrid_guidance/group_sort_filter
+                // Inspiré de: https://docs.microsoft.com/en-us/windows/communitytoolkit/controls/datagrid_guidance/group_sort_filter
                 dgVentes.ItemsSource = new ObservableCollection<Vente>(from item in Vente.ventes orderby item.Annee descending select item);
             }
 
@@ -42,6 +47,11 @@ namespace UIL
             }
         }
 
+        /// <summary>
+        /// Lors que la grid est loaded, changer le titre de la fenêtre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             Window window = Window.GetWindow(this);

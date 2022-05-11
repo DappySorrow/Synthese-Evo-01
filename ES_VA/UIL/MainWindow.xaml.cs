@@ -94,12 +94,22 @@ namespace UIL
             userGrid.Children.Add(Ecran);
         }
 
+        /// <summary>
+        /// Quand la grid du MainWindow est loaded, charger le fichier des utilisateurs et cache le menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             SectionMenu.Visibility = Visibility.Hidden;
             Connexion.ChargerFichier();
         }
 
+        /// <summary>
+        /// Lors du clic sur le boutton valider, vérifier le id et le mot de passe.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
             if (tbId.Text != "" && pbPass.Password != "")
@@ -118,7 +128,7 @@ namespace UIL
 
                 if (validation)
                 {
-                    MessageBox.Show("Bonjour " + connexion.Id + ".", "Réussite", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Salutations " + connexion.Id + ".", "Réussite", MessageBoxButton.OK, MessageBoxImage.Information);
                     SectionMenu.Visibility = Visibility.Visible;
                     SectionConnexion.Visibility = Visibility.Hidden;
                     SectionDeconnection.Visibility = Visibility.Visible;
@@ -137,6 +147,11 @@ namespace UIL
             }
         }
 
+        /// <summary>
+        /// Lors du clic sur le boutton deconnection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Deconnection_Click(object sender, RoutedEventArgs e)
         {
 
@@ -151,10 +166,12 @@ namespace UIL
 
                 changerEcran(Accueil);
 
+                //Remise à neuf des UC
                 ListerLesVentes = new UCListerLesVentes();
                 VentesParProvince = new UCVentesParProvince();
                 EvolutionVentes = new UCEvolutionVentes();
 
+                //Retirer l'instance de connexion
                 Connexion.RemoveInstance();
             }
         }

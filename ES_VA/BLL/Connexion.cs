@@ -8,15 +8,22 @@ namespace BLL
 
     public class Connexion
     {
-        static public ObservableCollection<Connexion> utilisateurs = new ObservableCollection<Connexion>();
+        public static ObservableCollection<Connexion> utilisateurs = new ObservableCollection<Connexion>();
         private const string NOM_FICHIER = "connexion.json";
 
         //=================================================================================================
 
-        // variable static de type Auto
+        /// <summary>
+        /// L'instance de connexion
+        /// </summary>
         private static Connexion instance;
 
-        //Méthode publique et statique
+        /// <summary>
+        /// S'assurer que l'instance n'est pas déjà occupé
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="passwd"></param>
+        /// <returns>L'instance active ou une nouvelle instance</returns>
         public static Connexion GetInstance(string id, string passwd)
         {
             //Si on n'a pas encore une instance de l'objet Auto, alors on le crée
@@ -29,6 +36,9 @@ namespace BLL
             return instance;
         }
 
+        /// <summary>
+        /// Retirer l'instance active
+        /// </summary>
         public static void RemoveInstance()
         {
             instance = null;
@@ -36,14 +46,15 @@ namespace BLL
 
         //=================================================================================================
 
-        //Constructeur privé
         private Connexion(string id, string passwd)
         {
             Id = id;
             Passwd = passwd;
         }
 
-        //Constructeur privé
+        /// <summary>
+        /// Constructeur privé pour la désérialisation
+        /// </summary>
         private Connexion()
         {
         }
@@ -53,7 +64,9 @@ namespace BLL
 
         //=================================================================================================
 
-        //Méthode qui charge le fichier json dans la liste de participants
+        /// <summary>
+        /// Méthode qui charge le fichier json dans la liste de utilisateurs
+        /// </summary>
         public static void ChargerFichier()
         {
             StreamReader fichierConnexion;

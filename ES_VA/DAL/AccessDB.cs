@@ -7,6 +7,10 @@ namespace DAL
 {
     public class AccessDB
     {
+        /// <summary>
+        /// Établie une connexion avec la BD "donneesVentes" et va chercher ces données
+        /// </summary>
+        /// <returns>Les données contenues dans la table "ventes"</returns>
         public static DataTable ConnecterBDVentes()
         {
             MySqlConnection conn = new MySqlConnection("SERVER=localhost;DATABASE=donneesVentes;UID=root;PASSWORD=;");
