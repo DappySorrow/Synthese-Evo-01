@@ -111,10 +111,10 @@ namespace UIL
                     }
                 };
 
-                
+
                 foreach (double moyenne in lstMoyenne)
                 {
-                    SC[0].Values.Add(moyenne);              
+                    SC[0].Values.Add(moyenne);
                 }
 
                 //On applique le data
