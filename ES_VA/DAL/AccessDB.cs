@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿//Jean-Simon Barbeau --- 1446326
+using MySql.Data.MySqlClient;
 using System.Data;
 using System.Diagnostics;
-using MySql.Data.MySqlClient;
 
 namespace DAL
 {

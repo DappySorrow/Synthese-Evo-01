@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Jean-Simon Barbeau --- 1446326
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;

@@ -1,7 +1,7 @@
-﻿using System;
+﻿//Jean-Simon Barbeau --- 1446326
+using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using System.ComponentModel; //Soit capable d'avertir des changements
 using System.Collections.ObjectModel;
 using DAL;
